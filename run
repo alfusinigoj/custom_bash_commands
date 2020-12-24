@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 # run
-# Run command with timeout $1 seconds.
+# Run command with timeout $1.
 
-# Timeout seconds
-timeout_seconds="$1"
+max_timeout="$1"
 shift
 
 # PID
@@ -12,8 +11,8 @@ pid=$$
 
 # Start timeout
 (
-  sleep "$timeout_seconds"
-  echo "Timed out after $timeout_seconds seconds"
+  sleep "$max_timeout"
+  echo "Timed out after $max_timeout"
   kill -- -$pid &>/dev/null
 ) &
 timeout_pid=$!
